@@ -1,0 +1,109 @@
+/* styles.css */
+
+/* ====== Custom Variables ====== */
+:root {
+  --color-black-olive: #423e37;
+  --color-xanthous: #e3b23c;
+  --color-eggshell: #edebd7;
+  --color-taupe-gray: #a39594;
+  --color-dim-gray: #6e675f;
+}
+
+/* ====== Custom Utility Classes ====== */
+.text-primary {
+  color: var(--color-black-olive) !important;
+}
+
+.text-secondary {
+  color: var(--color-xanthous) !important;
+}
+
+.text-dim-gray {
+  color: var(--color-dim-gray) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-black-olive) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-xanthous) !important;
+}
+
+.bg-eggshell {
+  background-color: var(--color-eggshell) !important;
+}
+
+.bg-dim-gray {
+  background-color: var(--color-dim-gray) !important;
+}
+
+.bg-taupe-gray {
+  background-color: var(--color-taupe-gray) !important;
+}
+
+.border-primary {
+  border-color: var(--color-black-olive) !important;
+}
+
+.border-secondary {
+  border-color: var(--color-xanthous) !important;
+}
+
+/* ====== Typography ====== */
+.heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-black-olive);
+}
+
+.subheading {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-dim-gray);
+}
+
+.paragraph {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-black-olive);
+}
+
+/* ====== Buttons ====== */
+.btn-primary {
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-xanthous);
+  border: 1px solid var(--color-xanthous);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ffca4b;
+  border-color: #ffca4b;
+}
+
+.btn-outline {
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  border: 1px solid var(--color-xanthous);
+  color: var(--color-xanthous);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-xanthous);
+  color: white;
+}
+
+/* ====== Cards ====== */
+.card {
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-eggshell);
+}
