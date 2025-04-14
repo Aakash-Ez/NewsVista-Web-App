@@ -35,7 +35,7 @@ const Header: React.FC = () => {
     { key: "blindspots", label: <Link to="/blindspots">BlindSpots</Link>, icon: <LineChartOutlined /> },
     !isGuest && { key: "dashboard", label: <Link to="/dashboard">Dashboard</Link>, icon: <DashboardOutlined /> },
     { key: "about", label: <Link to="/about">About</Link>, icon: <InfoCircleOutlined /> },
-    !isGuest && { key: "bias", label: <Link to="/bias">Bias Meter</Link>, icon: <LineChartOutlined /> },
+    !isGuest && { key: "election", label: <Link to="/election">Election Insights</Link>, icon: <LineChartOutlined /> },
     !isGuest && { key: "profile", label: <Link to="/profile">Profile</Link>, icon: <UserOutlined /> },
   ].filter(item => item !== false);
 
