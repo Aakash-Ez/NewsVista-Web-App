@@ -21,12 +21,12 @@ const COLORS = ['#1890ff', '#8c8c8c', '#fa541c'];
 
 const team = [
   { name: 'Aakash Ezhilan', role: 'Jr. Developer' },
-  { name: 'Aashikram R', role: 'CTO' },
+  { name: 'Aashikram R', role: 'CEO' },
   { name: 'Amarendra Mandal', role: 'Analyst' },
   { name: 'Ankita Halder', role: 'Researcher' },
   { name: 'Balasubramanian R', role: 'Tester' },
-  { name: 'Gautham S', role: 'CEO' },
-  { name: 'Jayendra', role: 'CMO' },
+  { name: 'Gautham S', role: 'Marketing Head' },
+  { name: 'Jayendra', role: 'CFO' },
   { name: 'N J Eshwar', role: 'Infra Head' },
   { name: 'Tithi Biswas', role: 'CIO' },
   { name: 'Upasana', role: 'Editor' },
