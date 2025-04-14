@@ -33,8 +33,7 @@ const Header: React.FC = () => {
   const menuItems = [
     { key: "latest", label: <Link to="/latest-news">Latest</Link>, icon: <ReadOutlined /> },
     { key: "blindspots", label: <Link to="/blindspots">BlindSpots</Link>, icon: <LineChartOutlined /> },
-    { key: "dashboard", label: <Link to="/dashboard">Dashboard</Link>, icon: <DashboardOutlined /> },
-    { key: "election", label: <Link to="/election">Election Tracker</Link>, icon: <BarChartOutlined /> },
+    !isGuest && { key: "dashboard", label: <Link to="/dashboard">Dashboard</Link>, icon: <DashboardOutlined /> },
     { key: "about", label: <Link to="/about">About</Link>, icon: <InfoCircleOutlined /> },
     !isGuest && { key: "bias", label: <Link to="/bias">Bias Meter</Link>, icon: <LineChartOutlined /> },
     !isGuest && { key: "profile", label: <Link to="/profile">Profile</Link>, icon: <UserOutlined /> },

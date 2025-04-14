@@ -6,28 +6,27 @@ import BlindSpotCard from '../components/BlindSpotCard';
 import { ArticleWithBias, BlindSpotArticles } from '../types';
 import '../styles.css';
 import FactCard from '../components/FactCard';
+import { getUserPreferences } from '../api/user_preferences';
 
 const { Title, Paragraph } = Typography;
 
 const DashboardPage: React.FC = () => {
   const [trending, setTrending] = useState<ArticleWithBias[]>([]);
-  const [leftBlindspot, setLeftBlindspot] = useState<BlindSpotArticles | null>(null);
-  const [rightBlindspot, setRightBlindspot] = useState<BlindSpotArticles | null>(null);
+  const [userBlindspot, setuserBlindspot] = useState<BlindSpotArticles | null>(null);
   const [biasScore, setBiasScore] = useState<Object | null>(null);
   const [curiousFacts, setCuriousFacts] = useState<Object | null>(null);
   const [topics, setTopics] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
+  
+
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [trendingRes, leftRes, rightRes, biasRes, keywordsRes, factsRes] = await Promise.all([
+        const [trendingRes, leftRes, biasRes, keywordsRes, factsRes] = await Promise.all([
           fetch(`${import.meta.env.VITE_TRENDING_API}`),
           fetch(`${import.meta.env.VITE_BLINDSPOT_API}`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ side: 'left' })
-          }),
-          fetch(`${import.meta.env.VITE_BLINDSPOT_API}`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ side: 'right' })
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ side: 'left', user_preferences: getUserPreferences() })
           }),
           fetch(`${import.meta.env.VITE_AVERAGE_BIAS_API}`),
           fetch(`${import.meta.env.VITE_KEYWORD_API}`),
@@ -36,14 +35,12 @@ const DashboardPage: React.FC = () => {
 
         const trendingData = await trendingRes.json();
         const leftData = await leftRes.json();
-        const rightData = await rightRes.json();
         const biasData = await biasRes.json();
         const keywordsData = await keywordsRes.json();
         const factsData = await factsRes.json();
 
         setTrending(trendingData.articles.slice(0, 3) || []);
-        setLeftBlindspot(leftData.articles?.[0] || null);
-        setRightBlindspot(rightData.articles?.[0] || null);
+        setuserBlindspot(leftData.articles?.[0] || null);
         console.log('Bias Data:', biasData);
         setBiasScore(biasData.average_bias_by_source || null);
         setTopics(keywordsData.keywords || []);
@@ -140,8 +137,7 @@ const DashboardPage: React.FC = () => {
 
           <Divider>🚨 Key Blindspots</Divider>
           <Row gutter={[24, 24]}>
-            {leftBlindspot && <Col xs={24} md={12}><BlindSpotCard article={leftBlindspot} /></Col>}
-            {rightBlindspot && <Col xs={24} md={12}><BlindSpotCard article={rightBlindspot} /></Col>}
+            {userBlindspot && <Col xs={24} md={12}><BlindSpotCard article={userBlindspot} /></Col>}
           </Row>
 
           <Divider>📊 Curious Fact</Divider>

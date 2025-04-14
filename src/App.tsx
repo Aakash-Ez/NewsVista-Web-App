@@ -11,10 +11,12 @@ import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProfilePage from "./pages/ProfilePage";
+import VoiceNavigation from "./components/VoiceNavigation";
 
 const App: React.FC = () => {
   return (
     <Router>
+      <VoiceNavigation />
       <div className="font-sans" style={{ width: "100vw", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
 
         <Header />

@@ -11,13 +11,6 @@ const { Content } = Layout;
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = checkUserAuth();
-    if (user) {
-      navigate('/dashboard');
-    }
-  }, [navigate]);
-
   return (
     <Layout className="bg-eggshell" style={{ minHeight: '100vh' }}>
 
@@ -50,7 +43,7 @@ const HomePage: React.FC = () => {
             <Paragraph style={{ fontSize: 18 }} className="text-dim-gray">
               NewsVista empowers you to see through the spin with AI-driven bias tracking, multilingual access, and your own dashboard to track what matters.
             </Paragraph>
-
+            {!checkUserAuth() && (
             <Space size={16} direction="vertical" style={{ width: '100%', marginTop: 24 }}>
               <Button type="primary" block className="btn-primary" onClick={() => navigate('/signup')}>
                 Create Account
@@ -59,6 +52,7 @@ const HomePage: React.FC = () => {
                 Log In
               </Button>
             </Space>
+            )}
           </Col>
         </Row>
 
