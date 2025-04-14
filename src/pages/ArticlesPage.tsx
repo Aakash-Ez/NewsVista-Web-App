@@ -8,6 +8,9 @@ import RelatedArticlesCard from '../components/RelatedArticlesCard';
 import { ArticleWithBias } from '../types';
 import MarkAsReadButton from '../components/MarkAsReadButton';
 import '../styles.css';
+import TTSCard from '../components/TTSCard';
+import { checkUserAuth } from '../api/auth';
+import SubscriptionCTA from '../components/SubscriptionCTA';
 
 const { Title, Paragraph } = Typography;
 
@@ -60,16 +63,56 @@ const ArticlesPage: React.FC = () => {
             <Title level={4} className="text-primary" style={{ marginTop: 24 }}>Article Bias</Title>
             <BiasMeter score={article.bias_score || 0} />
           </Card>
+            <div style={{ marginTop: 24 }}>
+            {checkUserAuth() ? (
+              (() => {
+              const userCookie = document.cookie.split('; ').find(row => row.startsWith('User='));
+              const user = userCookie ? JSON.parse(decodeURIComponent(userCookie.split('=')[1])) : null;
+              return user?.tier === 'premium' ? (
+                <TTSCard summary={article.summary} />
+              ) : (
+                <></> 
+              );
+              })()
+            ) : (
+              <></>
+            )}
+            </div>
         </Col>
+        {checkUserAuth() ? (
+            <Col xs={24} md={12}>
+            {(() => {
+              const userCookie = document.cookie.split('; ').find(row => row.startsWith('User='));
+              const user = userCookie ? JSON.parse(decodeURIComponent(userCookie.split('=')[1])) : null;
+              return user?.tier === 'premium' ? (
+              <Card className="card">
+                <Title level={4} className="text-primary">Understand the Article</Title>
+                <Paragraph><strong>ELI5:</strong> {article.eli5}</Paragraph>
+                <Paragraph><strong>Historical Context:</strong> {article.historical_context}</Paragraph>
+                <Paragraph><strong>Counterpoints:</strong> {article.counterpoints}</Paragraph>
+              </Card>
+              ) : (
+              <SubscriptionCTA 
+                tier={'free'} 
+                handleTierChange={() => {
+                window.location.href = '/profile';
+                }} 
+              />
+              );
+            })()}
+            </Col>
+        ) : null}
+        {!checkUserAuth() && (
+            <Col xs={24} md={12}>
+            <SubscriptionCTA 
+            tier={'free'} 
+            handleTierChange={() => {
+              window.location.href = '/signup';
+            }} 
+            />
+          </Col>
+        )}
 
-        <Col xs={24} md={12}>
-          <Card className="card">
-            <Title level={4} className="text-primary">Understand the Article</Title>
-            <Paragraph><strong>ELI5:</strong> {article.eli5}</Paragraph>
-            <Paragraph><strong>Historical Context:</strong> {article.historical_context}</Paragraph>
-            <Paragraph><strong>Counterpoints:</strong> {article.counterpoints}</Paragraph>
-          </Card>
-        </Col>
       </Row>
 
       <Divider />

@@ -12,6 +12,7 @@ import SignInPage from "./pages/SignInPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProfilePage from "./pages/ProfilePage";
 import VoiceNavigation from "./components/VoiceNavigation";
+import ElectionTracker from "./pages/ElectionTracker";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/latest-news" element={<LatestNewsPage />} />
+            <Route path="/election" element={<ElectionTracker />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/article" element={<ArticlesPage />} />
             <Route path="/blindspots" element={<BlindSpotPage />} />
