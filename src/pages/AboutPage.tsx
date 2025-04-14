@@ -20,9 +20,17 @@ const echoData = [
 const COLORS = ['#1890ff', '#8c8c8c', '#fa541c'];
 
 const team = [
-  'Aakash Ezhilan', 'Aashikram R', 'Amarendra Mandal', 'Ankita Halder',
-  'Balasubramanian R', 'Gautham S', 'Jayendra', 'N J Eshwar',
-  'Tithi Biswas', 'Upasana', 'Sanya'
+  { name: 'Aakash Ezhilan', role: 'Intern - (To be Fired)' },
+  { name: 'Aashikram R', role: 'CTO' },
+  { name: 'Amarendra Mandal', role: 'Analyst' },
+  { name: 'Ankita Halder', role: 'Researcher' },
+  { name: 'Balasubramanian R', role: 'Company Chef' },
+  { name: 'Gautham S', role: 'CEO' },
+  { name: 'Jayendra', role: 'CMO' },
+  { name: 'N J Eshwar', role: 'Infra Head' },
+  { name: 'Tithi Biswas', role: 'CIO' },
+  { name: 'Upasana', role: 'Editor' },
+  { name: 'Sanya', role: 'Strategist' }
 ];
 
 const AboutPage: React.FC = () => {
@@ -118,15 +126,17 @@ const AboutPage: React.FC = () => {
             <div>
               <Title level={3} className="text-primary">Who We Are</Title>
               <Paragraph className="text-dim-gray">
-                NewsVista is brought to you by a passionate team dedicated to reimagining how India reads and understands news.
+              NewsVista is brought to you by a passionate team dedicated to reimagining how India reads and understands news.
               </Paragraph>
               <List
-                size="small"
-                dataSource={team}
-                renderItem={name => (
-                  <List.Item><Tag color="blue">{name}</Tag></List.Item>
-                )}
-                style={{ marginTop: 12 }}
+              size="small"
+              dataSource={team.map(member => `${member.name} - ${member.role}`)}
+              renderItem={item => (
+                <List.Item>
+                <Typography.Text strong>{item}</Typography.Text>
+                </List.Item>
+              )}
+              style={{ marginTop: 12 }}
               />
             </div>
           </Col>

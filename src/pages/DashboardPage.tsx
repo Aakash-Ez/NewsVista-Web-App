@@ -63,12 +63,6 @@ const DashboardPage: React.FC = () => {
             A snapshot of bias, divergence, and information gaps in the media today.
           </Paragraph>
         </Col>
-        <Col xs={24} md={8} style={{ textAlign: 'right' }}>
-          <Paragraph className="text-dim-gray" style={{ fontSize: 13, marginBottom: 0 }}>
-            Curious to dig deeper?
-          </Paragraph>
-          <a href="/signup" className="text-primary" style={{ fontWeight: 500 }}>Create your free personalized dashboard →</a>
-        </Col>
       </Row>
 
       {loading ? <Spin size="large" style={{ margin: '40px auto', display: 'block' }} /> : (

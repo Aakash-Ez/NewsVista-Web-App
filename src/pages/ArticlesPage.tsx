@@ -92,25 +92,23 @@ const ArticlesPage: React.FC = () => {
                 <Paragraph><strong>Counterpoints:</strong> {article.counterpoints}</Paragraph>
               </Card>
               ) : (
-              <SubscriptionCTA 
-                tier={'free'} 
-                handleTierChange={() => {
-                window.location.href = '/profile';
-                }} 
-              />
+                <Card className="card">
+                <Title level={4} className="text-primary">Upgrade to Premium</Title>
+                <Paragraph>Unlock exclusive features such as:</Paragraph>
+                <ul>
+                  <li>Detailed article analysis</li>
+                  <li>Text-to-Speech summaries</li>
+                  <li>Historical context and counterpoints</li>
+                  <li>Fact-checking insights</li>
+                  <li>Social media pulse tracking</li>
+                </ul>
+                </Card>
               );
             })()}
             </Col>
         ) : null}
         {!checkUserAuth() && (
-            <Col xs={24} md={12}>
-            <SubscriptionCTA 
-            tier={'free'} 
-            handleTierChange={() => {
-              window.location.href = '/signup';
-            }} 
-            />
-          </Col>
+            <></>
         )}
 
       </Row>
@@ -118,13 +116,40 @@ const ArticlesPage: React.FC = () => {
       <Divider />
 
       <Row gutter={[16, 16]}>
-        <Col xs={24} md={12}>
+        {checkUserAuth() ? (
+          (() => {
+        const userCookie = document.cookie.split('; ').find(row => row.startsWith('User='));
+        const user = userCookie ? JSON.parse(decodeURIComponent(userCookie.split('=')[1])) : null;
+        return user?.tier === 'premium' ? (
+          <>
+            <Col xs={24} md={12}>
           <FactCheckCard headline={article.title} apiUrl={`${FACT_API_HOST}${FACT_API_URL}`} />
-        </Col>
-
-        <Col xs={24} md={12}>
+            </Col>
+            <Col xs={24} md={12}>
           <SocialPulseCard headline={article.title} apiUrl={`${SOCIAL_API_HOST}${SOCIAL_API_URL}`} />
-        </Col>
+            </Col>
+          </>
+        ) : (
+          <Col xs={24}>
+            <SubscriptionCTA 
+          tier={'free'} 
+          handleTierChange={() => {
+            window.location.href = '/profile';
+          }} 
+            />
+          </Col>
+        );
+          })()
+        ) : (
+          <Col xs={24}>
+        <SubscriptionCTA 
+          tier={'guest'} 
+          handleTierChange={() => {
+            window.location.href = '/signup';
+          }} 
+        />
+          </Col>
+        )}
       </Row>
 
       <Divider />
