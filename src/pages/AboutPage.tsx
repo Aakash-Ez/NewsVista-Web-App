@@ -20,11 +20,11 @@ const echoData = [
 const COLORS = ['#1890ff', '#8c8c8c', '#fa541c'];
 
 const team = [
-  { name: 'Aakash Ezhilan', role: 'Intern - (To be Fired)' },
+  { name: 'Aakash Ezhilan', role: 'Jr. Developer' },
   { name: 'Aashikram R', role: 'CTO' },
   { name: 'Amarendra Mandal', role: 'Analyst' },
   { name: 'Ankita Halder', role: 'Researcher' },
-  { name: 'Balasubramanian R', role: 'Company Chef' },
+  { name: 'Balasubramanian R', role: 'Tester' },
   { name: 'Gautham S', role: 'CEO' },
   { name: 'Jayendra', role: 'CMO' },
   { name: 'N J Eshwar', role: 'Infra Head' },
