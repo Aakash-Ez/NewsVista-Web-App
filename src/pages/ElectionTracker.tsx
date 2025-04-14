@@ -101,8 +101,6 @@ const PartyCard: React.FC<{ party: Party }> = ({ party }) => {
 
       {/* Body Section: Notable Figures and Key Policies */}
       <div style={{ marginTop: 16 }}>
-        <Row gutter={16}>
-          <Col span={12}>
             <Text strong>Notable Figures:</Text>
             <List
               size="small"
@@ -114,8 +112,6 @@ const PartyCard: React.FC<{ party: Party }> = ({ party }) => {
               )}
               style={{ marginTop: 8 }}
             />
-          </Col>
-          <Col span={12}>
             <Text strong>Key Policies:</Text>
             <List
               size="small"
@@ -128,8 +124,6 @@ const PartyCard: React.FC<{ party: Party }> = ({ party }) => {
               )}
               style={{ marginTop: 8 }}
             />
-          </Col>
-        </Row>
       </div>
 
       {/* Public Sentiment Section */}
